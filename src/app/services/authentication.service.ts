@@ -40,4 +40,19 @@ export class AuthenticationService extends IonicAuth {
     async login() {
       await super.login();
     }
+
+    async isAuthenticated() {
+      return await super.isAuthenticated();
+    }
+
+    async getUserInfo() {
+      const user = await super.getIdToken();
+      return {
+        id: user.sub,
+        email: user.email,
+        pic: user.picture,
+        firstName: user.firstName,
+        lastName: user.lastName
+      };
+    }
 }

@@ -1,14 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Welcome, {{ user.firstName }}!
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    <div align="center">
+      <ion-avatar>
+        <img src="{{ user.pic }}">
+      </ion-avatar>
+    
+      <p>{{user.firstName}} {{ user.lastName }}</p>
+      <p>{{ user.email }}</p>
+    </div>
   </div>
 </ion-content>

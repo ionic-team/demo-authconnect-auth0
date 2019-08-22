@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async click() {
+  async login() {
     this.authService.login();
   }
 
