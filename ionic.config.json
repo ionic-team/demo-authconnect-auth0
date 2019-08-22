@@ -1,5 +1,7 @@
 {
   "name": "demo-authconnect-auth0",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
