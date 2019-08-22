@@ -1,20 +1,22 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Welcome, {{ user.firstName }}!
+      Welcome!
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    <div align="center">
+    <div align="center" *ngIf="user">
       <ion-avatar>
-        <img src="{{ user.pic }}">
+        <img src="{{ user.picture }}">
       </ion-avatar>
     
-      <p>{{user.firstName}} {{ user.lastName }}</p>
+      <p>{{ user.name}}</p> 
       <p>{{ user.email }}</p>
     </div>
+    
+    <ion-button expand="block" (click)="logout();">Log out</ion-button>
   </div>
 </ion-content>

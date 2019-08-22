@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService extends IonicAuth {
 
+  private router: Router;
+
   constructor(router: Router, plt: Platform) {
       const auth0Config : IonicAuthOptions = {
         // the auth provider
@@ -25,7 +27,7 @@ export class AuthenticationService extends IonicAuth {
         // the audience, if applicable
         audience: 'https://api.myapp.com',
         // the URL to redirect to after log out
-        logoutUrl: 'myapp://callback?logout=true',
+        logoutUrl: 'myapp://login?logout=true',
         // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
         // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
         // to confirm they want to share site data with the app. 'private' uses a webview which will not
@@ -35,10 +37,21 @@ export class AuthenticationService extends IonicAuth {
       };
 
       super(auth0Config);
+
+      this.router = router;
     }
 
     async login() {
       await super.login();
+    }
+
+    async onLoginSuccess(response: any) {
+      console.log("log-in success");
+      this.router.navigate(['home']);
+    }
+
+    async logout() {
+      super.logout();
     }
 
     async isAuthenticated() {
@@ -46,13 +59,6 @@ export class AuthenticationService extends IonicAuth {
     }
 
     async getUserInfo() {
-      const user = await super.getIdToken();
-      return {
-        id: user.sub,
-        email: user.email,
-        pic: user.picture,
-        firstName: user.firstName,
-        lastName: user.lastName
-      };
+      return await super.getIdToken();
     }
 }
