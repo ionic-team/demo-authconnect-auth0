@@ -11,7 +11,7 @@ export class HomePage implements OnInit {
   private router: Router;
   private user: any;
 
-  constructor(private authService : AuthenticationService, router: Router) {
+  constructor(private authService: AuthenticationService, router: Router) {
     this.router = router;
   }
 
@@ -20,8 +20,9 @@ export class HomePage implements OnInit {
   }
 
   async logout() {
-    this.authService.logout();
-    //this.router.navigate(['login']);
+    await this.authService.logout();
+    if (await this.authService.isAuthenticated() === false) {
+      this.router.navigate(['login']);
+    }
   }
-
 }

@@ -27,13 +27,14 @@ export class AuthenticationService extends IonicAuth {
         // the audience, if applicable
         audience: 'https://api.myapp.com',
         // the URL to redirect to after log out
-        logoutUrl: 'myapp://login?logout=true',
+        logoutUrl: 'myapp://callback?logout=true',
         // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
         // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
         // to confirm they want to share site data with the app. 'private' uses a webview which will not
         // prompt the user but will not be able to share session/cookie data either for true SSO across
         // multiple apps.
-        iosWebView: 'private'
+        iosWebView: 'private',
+        clientSecret: ''
       };
 
       super(auth0Config);
