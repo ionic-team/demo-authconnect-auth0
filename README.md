@@ -6,6 +6,8 @@ This is a reference app used in the Auth0 article (TODO update w/link) on buildi
 
 ## What Does the App Do?
 
+Demo video 👇
+
 [![Auth0 and Auth Connect video](http://img.youtube.com/vi/L04P2ydnUB4/0.jpg)](http://www.youtube.com/watch?v=L04P2ydnUB4 "Demo: Auth0 with Ionic Auth Connect")
 
 It demonstrates the usage of [Auth Connect](https://ionicframework.com/auth-connect) to implement a simple login/logout experience (with Auth0 as the authentication provider) that works 
