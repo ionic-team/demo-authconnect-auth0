@@ -6,7 +6,7 @@ This is a reference app used in the Auth0 article (TODO update w/link) on buildi
 
 ## What Does the App Do?
 
-(todo - embed youtube)
+[![Auth0 and Auth Connect video](http://img.youtube.com/vi/L04P2ydnUB4/0.jpg)](http://www.youtube.com/watch?v=L04P2ydnUB4 "Demo: Auth0 with Ionic Auth Connect")
 
 It demonstrates the usage of [Auth Connect](https://ionicframework.com/auth-connect) to implement a simple login/logout experience (with Auth0 as the authentication provider) that works 
 on the web, iOS, and Android. Either native app runtime (Cordova or Capacitor) can be used to deploy the app to a mobile device.
@@ -18,6 +18,12 @@ This is a modified version of the Ionic `blank` starter project. There are 3 maj
 * The Home page (`src/app/home`). Displays the sign in user's profile image and details (retrieved from Auth0). Includes a button to log out of the app.
 * The Login page (`src/app/login`). Protects the Home page from unauthorized access. User must sign in first via this page using Auth Connect and Auth0.
 * The AuthenticationService class (`src/app/services/authentication.service.ts`). The login/logout implementation using Auth Connect and Auth0.
+
+### Ionic components
+
+* `<ion-button>`: [Buttons](https://ionicframework.com/docs/api/button) for logging in and out of the app.
+* `<ion-loading>`: A [loading indicator](https://ionicframework.com/docs/api/loading) displayed when login begins.
+* `ion-avatar>`: [Avatar](https://ionicframework.com/docs/api/avatar) displays user's profile picture.
 
 ## How to Run
 

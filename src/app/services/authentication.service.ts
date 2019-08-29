@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AuthenticationService extends IonicAuth {
 
   private router: Router;
+  private loadingIndicator: HTMLIonLoadingElement;
 
   constructor(router: Router, plt: Platform) {
       const auth0Config : IonicAuthOptions = {
@@ -17,23 +18,25 @@ export class AuthenticationService extends IonicAuth {
         // The platform which we are running on
         platform: 'cordova',
         // client or application id for provider
-        clientID: '',
+        clientID: 'FILL_IN',
         // the discovery url for the provider
-        discoveryUrl: '',
+        // OpenID configuration
+        discoveryUrl: 'FILL_IN',
         // the URI to redirect to after log in
-        redirectUri: 'myapp://callback',
+        redirectUri: 'FILL_IN',
         // requested scopes from provider
         scope: 'openid offline_access email picture profile',
         // the audience, if applicable
-        audience: 'https://api.myapp.com',
+        audience: 'FILL_IN',
         // the URL to redirect to after log out
-        logoutUrl: 'myapp://callback?logout=true',
+        logoutUrl: 'FILL_IN',
         // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
         // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
         // to confirm they want to share site data with the app. 'private' uses a webview which will not
         // prompt the user but will not be able to share session/cookie data either for true SSO across
         // multiple apps.
         iosWebView: 'private',
+        // required if running on the Web
         clientSecret: ''
       };
 
@@ -42,13 +45,20 @@ export class AuthenticationService extends IonicAuth {
       this.router = router;
     }
 
-    async login() {
-      await super.login();
-    }
+     async login(loadingIndicator: any) {
+       this.loadingIndicator = loadingIndicator;
+
+       await super.login();
+     }
 
     async onLoginSuccess(response: any) {
-      console.log("log-in success");
-      this.router.navigate(['home']);
+      await this.router.navigate(['home']);
+
+      this.loadingIndicator.dismiss();
+    }
+
+    async onLogout() {
+      this.router.navigate(['login']);
     }
 
     async logout() {

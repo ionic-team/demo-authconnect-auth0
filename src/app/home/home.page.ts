@@ -21,8 +21,5 @@ export class HomePage implements OnInit {
 
   async logout() {
     await this.authService.logout();
-    if (await this.authService.isAuthenticated() === false) {
-      this.router.navigate(['login']);
-    }
   }
 }
