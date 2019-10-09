@@ -11,33 +11,58 @@ export class AuthenticationService extends IonicAuth {
   private router: Router;
   private loadingIndicator: HTMLIonLoadingElement;
 
-  constructor(router: Router, plt: Platform) {
+  constructor(router: Router, platform: Platform) {
       const auth0Config : IonicAuthOptions = {
         // the auth provider
         authConfig: 'auth0',
         // The platform which we are running on
         platform: 'cordova',
         // client or application id for provider
-        clientID: 'FILL_IN',
+        clientID: 'jnvtyhFq52alCReRnhCQp5PAszYoUzj0',
         // the discovery url for the provider
         // OpenID configuration
-        discoveryUrl: 'FILL_IN',
+        discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
         // the URI to redirect to after log in
-        redirectUri: 'FILL_IN',
+        redirectUri: 'acAuth0://login',
         // requested scopes from provider
         scope: 'openid offline_access email picture profile',
         // the audience, if applicable
-        audience: 'FILL_IN',
+        audience: 'https://api.myapp.com',
         // the URL to redirect to after log out
-        logoutUrl: 'FILL_IN',
+        logoutUrl: 'acAuth0://login',
+        // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
+        // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
+        // to confirm they want to share site data with the app. 'private' uses a webview which will not
+        // prompt the user but will not be able to share session/cookie data either for true SSO across
+        // multiple apps.
+        iosWebView: 'private'
+      };
+
+      const auth0WebConfig : IonicAuthOptions = {
+        // the auth provider
+        authConfig: 'auth0',
+        // The platform which we are running on
+        platform: 'web',
+        // client or application id for provider
+        clientID: 'jnvtyhFq52alCReRnhCQp5PAszYoUzj0',
+        // the discovery url for the provider
+        // OpenID configuration
+        discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
+        // the URI to redirect to after log in
+        redirectUri: 'http://localhost:8100/login',
+        // requested scopes from provider
+        scope: 'openid offline_access email picture profile',
+        // the audience, if applicable
+        audience: 'https://api.myapp.com',
+        // the URL to redirect to after log out
+        logoutUrl: 'http://localhost:8100/login',
         // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
         // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
         // to confirm they want to share site data with the app. 'private' uses a webview which will not
         // prompt the user but will not be able to share session/cookie data either for true SSO across
         // multiple apps.
         iosWebView: 'private',
-        // required if running on the Web
-        clientSecret: ''
+        implicitLogin: 'POPUP'
       };
 
       super(auth0Config);
@@ -45,24 +70,40 @@ export class AuthenticationService extends IonicAuth {
       this.router = router;
     }
 
-     async login(loadingIndicator: any) {
+     async login(loadingIndicator) {
        this.loadingIndicator = loadingIndicator;
 
        await super.login();
      }
 
+     // Event fired by Auth Connect upon successful login to auth provider.
     async onLoginSuccess(response: any) {
+      console.log('log success');
       await this.router.navigate(['home']);
 
-      this.loadingIndicator.dismiss();
+      // Implicit login: POPUP flow
+      if (this.loadingIndicator) {
+        console.log('dismissed!');
+        this.loadingIndicator.dismiss();
+      }
+    }
+
+     // Called as part of CURRENT implicit login flow only
+     async callback(url, loadingIndicator) {
+       console.log("callback");
+       loadingIndicator.dismiss();
+
+       await super.handleCallback(url);
+     }
+
+    // Log out of auth provider, then automatically redirect to the app page
+    // specified in the `logoutUrl` property
+    async logout() {
+      await super.logout();
     }
 
     async onLogout() {
-      this.router.navigate(['login']);
-    }
-
-    async logout() {
-      super.logout();
+      await this.router.navigate(['login']);
     }
 
     async isAuthenticated() {
