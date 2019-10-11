@@ -1,6 +1,6 @@
 # Demo App: Ionic Auth Connect with Auth0
 
-This is a reference app used in the Auth0 article (TODO update w/link) on building a login/logout experience with Ionic Auth Connect.
+This is a reference app used in the Auth0 article (coming soon) on building a login/logout experience with Ionic Auth Connect.
 
 > Note: This is a demo/reference sample and thus may not be maintained over time. Specs: @ionic/angular 4.7.1, Angular 8.
 
@@ -29,13 +29,14 @@ This is a modified version of the Ionic `blank` starter project. There are 3 maj
 
 ## How to Run
 
-NOTE: This app requires an [Ionic Native Enterprise Edition](https://ionicframework.com/docs/enterprise) key in order to install and use the Ionic Auth Connect plugin. Enterprise Edition includes a reliable set of Native APIs & functionality that you can use in your Ionic app, quality controlled and maintained by the Ionic Team.
+NOTE: This app requires an [Ionic Native](https://ionicframework.com/docs/enterprise) key in order to install and use the Ionic Auth Connect plugin. Ionic Native includes a reliable set of Native APIs & functionality that you can use in your Ionic app, quality controlled and maintained by the Ionic Team.
 If you are interested in acquiring a key or learning more, please [contact us here](https://ionicframework.com/enterprise/contact).
 
 1) Clone this repository.
 2) Run `npm install`.
 3) Follow the Auth Connect plugin installation instructions [here](https://ionicframework.com/docs/enterprise/auth-connect).
 4) Build and Deploy to an [Android](https://ionicframework.com/docs/building/android) or [iOS](https://ionicframework.com/docs/building/ios) device.
+5) Additionally, run locally as a web app: Fill in Auth0 credentials, then run `ionic serve`.
 
 ## Resources
 
