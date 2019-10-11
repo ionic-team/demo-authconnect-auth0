@@ -80,19 +80,16 @@ export class AuthenticationService extends IonicAuth {
 
      // Event fired by Auth Connect upon successful login to auth provider.
     async onLoginSuccess(response: any) {
-      console.log('log success');
       await this.router.navigate(['home']);
 
       // Implicit login: POPUP flow
       if (this.loadingIndicator) {
-        console.log('dismissed!');
         this.loadingIndicator.dismiss();
       }
     }
 
      // Called as part of CURRENT implicit login flow only
      async callback(url, loadingIndicator) {
-       console.log("callback");
        loadingIndicator.dismiss();
 
        await super.handleCallback(url);
