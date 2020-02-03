@@ -7,4 +7,9 @@
 <ion-content>
   <p style="text-align:center">Please sign into your account:</p>
   <ion-button expand="block" (click)="login()" padding size="large">Log In</ion-button>
+  <div class="ion-text-center ion-padding">
+    <p class="error">
+      {{errorMessage}}
+    </p>
+  </div>
 </ion-content>

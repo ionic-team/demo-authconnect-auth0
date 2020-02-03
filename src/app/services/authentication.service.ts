@@ -60,56 +60,24 @@ const auth0WebConfig : IonicAuthOptions = {
   providedIn: 'root'
 })
 export class AuthenticationService extends IonicAuth {
-
   private router: Router;
-  private loadingIndicator: HTMLIonLoadingElement;
 
-  constructor(router: Router, platform: Platform) {
-      // Determine whether to run on mobile or the web
-      const selectedConfig = platform.is("cordova") ? auth0CordovaConfig : auth0WebConfig;
-      super(selectedConfig);
+  constructor(platform: Platform, router: Router) {
+    // Determine whether to run on mobile or the web
+    const selectedConfig = platform.is('cordova') ? auth0CordovaConfig : auth0WebConfig;
+    super(selectedConfig);
+    this.router = router;
+  }
 
-      this.router = router;
-    }
+  async getUserInfo() {
+    return await super.getIdToken();
+  }
 
-     async login(loadingIndicator) {
-       this.loadingIndicator = loadingIndicator;
+  onLoginSuccess() {
+    this.router.navigate(['home']);
+  }
 
-       await super.login();
-     }
-
-     // Event fired by Auth Connect upon successful login to auth provider.
-    async onLoginSuccess(response: any) {
-      await this.router.navigate(['home']);
-
-      // Implicit login: POPUP flow
-      if (this.loadingIndicator) {
-        this.loadingIndicator.dismiss();
-      }
-    }
-
-     // Called as part of CURRENT implicit login flow only
-     async callback(url, loadingIndicator) {
-       loadingIndicator.dismiss();
-
-       await super.handleCallback(url);
-     }
-
-    // Log out of auth provider, then automatically redirect to the app page
-    // specified in the `logoutUrl` property
-    async logout() {
-      await super.logout();
-    }
-
-    async onLogout() {
-      await this.router.navigate(['login']);
-    }
-
-    async isAuthenticated() {
-      return await super.isAuthenticated();
-    }
-
-    async getUserInfo() {
-      return await super.getIdToken();
-    }
+  onLogout() {
+    this.router.navigate(['login']);
+  }
 }
