@@ -40,6 +40,6 @@ If you are interested in acquiring a key or learning more, please [contact us he
 
 ## Resources
 
-* [Auth0 tutorial](todo) referencing this repo (todo)
+* [Auth0 tutorial](https://auth0.com/blog/adding-auth0-to-an-ionic-angular-app-using-auth-connect/)
 * [Auth Connect documentation](https://ionicframework.com/docs/enterprise/auth-connect)
 * [Auth0 website](https://auth0.com)
