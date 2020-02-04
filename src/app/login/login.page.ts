@@ -13,7 +13,6 @@ export class LoginPage implements OnInit {
   constructor(private authService: AuthenticationService, private loadingController: LoadingController) {}
 
   async ngOnInit() {
-    console.log('ngOnInit');
     // If coming back after logging into Auth0,
     // and using CURRENT Implicit (web) Login
     if (window.location.hash) {
@@ -29,7 +28,14 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    await this.authService.login();
+    const loadingIndicator = await this.showLoadingIndictator();
+    try {
+      await this.authService.login();
+    } catch (e) {
+      console.log(`caught error ${e.message}`);
+    } finally {
+      loadingIndicator.dismiss();
+    }
   }
 
   private async showLoadingIndictator() {
