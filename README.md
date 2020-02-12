@@ -35,8 +35,9 @@ If you are interested in acquiring a key or learning more, please [contact us he
 1) Clone this repository.
 2) Run `npm install`.
 3) Follow the Auth Connect plugin installation instructions [here](https://ionicframework.com/docs/enterprise/auth-connect).
-4) Build and Deploy to an [Android](https://ionicframework.com/docs/building/android) or [iOS](https://ionicframework.com/docs/building/ios) device.
-5) Additionally, run locally as a web app: Fill in Auth0 credentials, then run `ionic serve`.
+4) Fill in Auth0 credentials in (`src/app/services/authentication.service.ts`)
+5) Build and Deploy to an [Android](https://ionicframework.com/docs/building/android) or [iOS](https://ionicframework.com/docs/building/ios) device.
+6) Additionally, run locally as a web app with `ionic serve`.
 
 ## Resources
 
