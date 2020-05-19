@@ -1,6 +1,6 @@
 # Demo App: Ionic Auth Connect with Auth0
 
-This is a reference app used in the Auth0 article (coming soon) on building a login/logout experience with Ionic Auth Connect.
+This is a reference app used in the [Auth0 article](https://auth0.com/blog/adding-auth0-to-an-ionic-angular-app-using-auth-connect/) on building a login/logout experience with Ionic Auth Connect.
 
 > Note: This is a demo/reference sample and thus may not be maintained over time. Specs: @ionic/angular 4.7.1, Angular 8.
 
