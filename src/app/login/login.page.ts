@@ -30,6 +30,7 @@ export class LoginPage implements OnInit {
   async login() {
     const loadingIndicator = await this.showLoadingIndictator();
     try {
+      console.log("here");
       await this.authService.login();
     } catch (e) {
       console.log(`caught error ${e.message}`);

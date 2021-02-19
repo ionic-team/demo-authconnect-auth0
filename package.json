@@ -21,6 +21,7 @@
     "@angular/router": "^11.0.2",
     "@capacitor/cli": "^3.0.0-beta.3",
     "@capacitor/core": "^3.0.0-beta.3",
+    "@capacitor/ios": "^3.0.0-beta.3",
     "@capacitor/splash-screen": "^0.3.3",
     "@capacitor/status-bar": "^0.4.3",
     "@ionic-enterprise/auth": "~3.3.1",
@@ -58,22 +59,5 @@
     "tslint": "~6.1.0",
     "typescript": "~4.0.5"
   },
-  "description": "An Ionic project",
-  "cordova": {
-    "plugins": {
-      "@ionic-enterprise/auth": {
-        "AUTH_URL_SCHEME": "acAuth0"
-      },
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
-      "cordova-plugin-ionic-keyboard": {},
-      "@ionic-enterprise/identity-vault": {}
-    },
-    "platforms": [
-      "ios"
-    ]
-  }
+  "description": "An Ionic project"
 }
