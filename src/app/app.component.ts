@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-
-import { Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -10,18 +9,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+  constructor() {
     this.initializeApp();
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+    if (Capacitor.isNativePlatform()) {
+
+      StatusBar.setStyle({ style: Style.Light });
+
+      /* To make sure we provide the fastest app loading experience 
+          for our users, hide the splash screen automatically 
+          when the app is ready to be used:
+          
+          https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
+      */
+      SplashScreen.hide();
+    }
   }
 }

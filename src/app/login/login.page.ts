@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     if (window.location.hash) {
       const loadingIndicator = await this.showLoadingIndictator();
       try {
-        await this.authService.handleCallback(window.location.href);
+        await this.authService.handleLoginCallback(window.location.href);
       } catch (e) {
         this.errorMessage = e.message;
       } finally {
